@@ -74,7 +74,26 @@ body{font-family:Inter,system-ui,Arial;background:#f6f6f6;margin:0;padding:0}
   </div>
 </div>
 
-<script>
+<!-- Checkout modal (REPLACE your existing checkout modal with this) -->
+<div id="checkoutModal" style="display:none" class="modal" onclick="if(event.target===this) closeCheckout()">
+  <div class="modalcard">
+    <h4>Checkout</h4>
+    <input id="custName" class="input" placeholder="Your name (required)">
+    <input id="custPhone" class="input" placeholder="Phone number (required)">
+    <input id="custNote" class="input" placeholder="Delivery note (optional)">
+    <!-- NEW: manual address field -->
+    <input id="custAddress" class="input" placeholder="Enter delivery address (required)">
+    <div style="margin-bottom:8px;display:flex;gap:8px;align-items:center">
+      <button class="btn" id="useLocationBtn" onclick="getLocation()">Use my location (optional)</button>
+      <div id="locText" class="small"></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <button class="btn" id="placeOrderBtn" onclick="placeOrder()" style="flex:1">Place order — <span id="checkoutAmt">₹0</span></button>
+      <button class="btn" onclick="closeCheckout()" style="background:#eee;color:#111">Cancel</button>
+    </div>
+  </div>
+</div>
+
 // ---------- CONFIG (already filled for you) ----------
 const API_URL = 'https://script.google.com/macros/s/AKfycbz8VRTI9YESPzb38zi0-jM-ZxQIdryD2cscuYWksFdbJVOsr_s4kmSKXm5CMfmGy0pxJQ/exec';
 const SECRET = 'nd_secret_8980';
